@@ -44,13 +44,13 @@ let sendMails = (groupDetails , apiResponse)=>{
     for(let group of groupDetails.groupMembers)
     {
         let emailOptions = {
-            from: 'expenseManagement@gmail.com',
+            from: 'todoist@gmail.com',
             to: group.email,
             subject: 'notification',
             html: `<p>Hi ${group.userName}</p> <br> <p>The expense ${apiResponse.data.expenseName}  ${apiResponse.message} </p>
             <br> <br>
             From<br>
-            Expense Management team`
+            Todoist team`
         }
      sendEmail(emailOptions);
         

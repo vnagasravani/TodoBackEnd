@@ -8,7 +8,9 @@ let hashpassword = (myPlaintextPassword) => {
   let salt = bcrypt.genSaltSync(saltRounds)
   let hash = bcrypt.hashSync(myPlaintextPassword, salt)
   return hash
-}
+}//end hashPassword
+
+
 let comparePassword = (oldPassword, hashpassword, cb) => {
   bcrypt.compare(oldPassword, hashpassword, (err, res) => {
     if (err) {
@@ -18,11 +20,12 @@ let comparePassword = (oldPassword, hashpassword, cb) => {
       cb(null, res)
     }
   })
-}
+}//end comparePassword
 
 let comparePasswordSync = (myPlaintextPassword, hash) => {
   return bcrypt.compareSync(myPlaintextPassword, hash)
-}
+}//end comparePasswordSync
+
 module.exports = {
   hashpassword: hashpassword,
   comparePassword: comparePassword,

@@ -7,11 +7,11 @@ let setRouter = (app)=>{
   app.post('/login',userController.login);
   app.post('/resetpassword',userController.resetPasswordFunction);
   app.post('/updatepassword',userController.updatePasswordFunction);
-  app.post('/all', authmw.isAuthorised, userController.getAllUser);
+  app.post('/all', userController.getAllUser);
   app.get('/user/:id',userController.getSingleUser);
   app.post('/delete/:userId',userController.deleteUser);
   app.put('/edit/:userId',userController.editUser);
-  app.post('/out',authmw.isAuthorised,userController.logout );
+  app.post('/out',userController.logout );
 
 }
 

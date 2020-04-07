@@ -7,6 +7,7 @@ const socketio = require('./app/socketLib/socket')
 const bodyparser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
+const errorHandler = require('./app/middleware/appErrorHandler');
 
 const app = express ();
 
@@ -20,7 +21,8 @@ let socket = socketio.setServer(server);
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:false}));
-app.use(express.static('client')); 
+app.use(express.static('client'));
+
 
 let modelsPath = './app/models';
 let routesPath='./app/routes';
@@ -46,6 +48,11 @@ fs.readdirSync(modelsPath).forEach(function (file) {
       route.setRouter(app);
     }
   });
+
+
+  
+  app.use(errorHandler.globalNotFoundHandler); 
+
 
 function onError(error) {
     if (error.syscall !== 'listen') {

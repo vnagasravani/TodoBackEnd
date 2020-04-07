@@ -421,8 +421,7 @@ let login = (req, res) => {
 // end of the login function 
 
 let logout = (req,res)=>{
-    logger.info(req.user);
-    authModel.findOneAndRemove({ 'userId': req.user.userId }).exec((err, result) => {
+    authModel.findOneAndRemove({ 'userId': req.body.userId }).exec((err, result) => {
        
         if (err) {
             logger.info(err);           
@@ -504,7 +503,7 @@ let resetPassword=(userDetail)=>{
                            <br>We have successfully reset your password. Please use following password as a recovery password while resetting the Password <br>
                            <br> Recovery Password : ${recovery.recoveryPassword} 
                        </p>
-                        ExpenseManagement
+                         Todoist
                         <br><b>v sravani </b> `    
     
             }
@@ -589,7 +588,7 @@ let updatePasswordFunction = (req, res) => {
                                    password updated suucessfully 
                                </p>
 
-                                ExpenseManagement
+                                    Todoist
                                 <br><b>v sravani </b> `    
             
                     }

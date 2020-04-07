@@ -232,7 +232,7 @@ let setServer = (server) => {
 
                         newUndoModel.save((err, result) => {
                             if (err) {
-                                socket.emit('error-message', { status: 500, message: 'failed to save todo list' })
+                                socket.emit('error-message', { status: 500, message: 'failed to add item in  todo list' })
                             }
                             else {
                                 let dataa = {
@@ -292,7 +292,7 @@ let setServer = (server) => {
                     newUndoModel.save((err, result) => {
                         if (err) {
                             console.log('err',err);
-                            socket.emit('error-message', { status: 500, message: 'failed to save todo list in add-friend-sub-item' })
+                            socket.emit('error-message', { status: 500, message: 'failed to add sub item ' })
                         }
                         else {
                             let dataa = {
@@ -348,7 +348,7 @@ let setServer = (server) => {
 
                     newUndoModel.save((err, result) => {
                         if (err) {
-                            socket.emit('error-message', { status: 500, message: 'failed to save todo list' })
+                            socket.emit('error-message', { status: 500, message: 'failed to update todo ' })
                         }
                         else {
                             let dataa={
@@ -407,7 +407,7 @@ let setServer = (server) => {
 
                     newUndoModel.save((err, result) => {
                         if (err) {
-                            socket.emit('error-message', { status: 500, message: 'failed to save todo list' })
+                            socket.emit('error-message', { status: 500, message: 'failed to update item' })
                         }
                         else {
                             let dataa={
@@ -462,7 +462,7 @@ let setServer = (server) => {
 
                     newUndoModel.save((err, result) => {
                         if (err) {
-                            socket.emit('error-message', { status: 500, message: 'failed to save todo list' })
+                            socket.emit('error-message', { status: 500, message: 'failed to update sub-item' })
                         }
                         else {
                             let dataa={
@@ -519,7 +519,7 @@ let setServer = (server) => {
 
                     newUndoModel.save((err, result) => {
                         if (err) {
-                            socket.emit('error-message', { status: 500, message: 'failed to save todo list' })
+                            socket.emit('error-message', { status: 500, message: 'failed to delete todo ' })
                         }
                         else {
                             let dataa={
@@ -580,7 +580,7 @@ let setServer = (server) => {
 
                     newUndoModel.save((err, result) => {
                         if (err) {
-                            socket.emit('error-message', { status: 500, message: 'failed to save todo list' })
+                            socket.emit('error-message', { status: 500, message: 'failed to delete item' })
                         }
                         else {
 
@@ -632,7 +632,7 @@ let setServer = (server) => {
 
                     newUndoModel.save((err, result) => {
                         if (err) {
-                            socket.emit('error-message', { status: 500, message: 'failed to save todo list' })
+                            socket.emit('error-message', { status: 500, message: 'failed to delete sub-item' })
                         }
                         else {
                             let dataa={
@@ -734,7 +734,7 @@ let setServer = (server) => {
 
                     newUndoModel.save((err, result) => {
                         if (err) {
-                            socket.emit('error-message', { status: 500, message: 'failed to save todo list' })
+                            socket.emit('error-message', { status: 500, message: 'failed to complete todo' })
                         }
                         else {
                             let dataa={
@@ -791,7 +791,7 @@ let setServer = (server) => {
 
                     newUndoModel.save((err, result) => {
                         if (err) {
-                            socket.emit('error-message', { status: 500, message: 'failed to save todo list' })
+                            socket.emit('error-message', { status: 500, message: 'failed to complete item' })
                         }
                         else {
                             let dataa={
@@ -844,7 +844,7 @@ let setServer = (server) => {
 
                     newUndoModel.save((err, result) => {
                         if (err) {
-                            socket.emit('error-message', { status: 500, message: 'failed to save todo list' })
+                            socket.emit('error-message', { status: 500, message: 'failed to complete sub-item' })
                         }
                         else {
                             let dataa={
@@ -900,7 +900,7 @@ let setServer = (server) => {
 
                     newUndoModel.save((err, result) => {
                         if (err) {
-                            socket.emit('error-message', { status: 500, message: 'failed to save todo list' })
+                            socket.emit('error-message', { status: 500, message: 'failed to recomplete todo' })
                         }
                         else {
                             let dataa={
@@ -957,7 +957,7 @@ let setServer = (server) => {
 
                     newUndoModel.save((err, result) => {
                         if (err) {
-                            socket.emit('error-message', { status: 500, message: 'failed to save todo list' })
+                            socket.emit('error-message', { status: 500, message: 'failed to recomplete item' })
                         }
                         else {
                             let dataa={
@@ -1015,7 +1015,7 @@ let setServer = (server) => {
 
                     newUndoModel.save((err, result) => {
                         if (err) {
-                            socket.emit('error-message', { status: 500, message: 'failed to save todo list' })
+                            socket.emit('error-message', { status: 500, message: 'failed to recomplete sub item' })
                         }
                         else {
                             let dataa={
@@ -1095,6 +1095,9 @@ let setServer = (server) => {
         })//end send-request
 
         socket.on('accept-request', (data) => {
+            console.log('accept request is called');
+            console.log('accept request is called');
+            console.log('accept request is called');
             requestModel.findOneAndUpdate({ $and: [{ senderId: data.senderId }, { recieverId: data.recieverId }, { active: false }] }, { active: true }, { new: true }, (err, request) => {
                 if (err) {
                     socket.emit('error-message', { status: 500, message: 'error occured while accepting friend request ' })
@@ -1119,6 +1122,7 @@ let setServer = (server) => {
                                     socket.emit('error-message', { status: 500, message: 'friend detail not found ' })
                                 }
                                 else {
+                                    console.log('else part is coming')
                                     myIo.emit(`accepted-request`, request);
                                     socket.emit(`accept-request-response`, user2);
 

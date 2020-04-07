@@ -7,7 +7,7 @@ let generate = (err, message, status, data) => {
       data: data
     }
     return response
-  }
+  }//end generate
   
   module.exports = {
     generate: generate

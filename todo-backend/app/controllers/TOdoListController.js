@@ -40,7 +40,7 @@ let getAllTodoListsFunction = (req, res) => {
         }).catch((err) => {
             res.send(err)
         })
-}
+} //end getAllTodoListsFunction
 
 
 let getAllCompleteTodoListsFunction = (req, res) => {
@@ -70,7 +70,7 @@ let getAllCompleteTodoListsFunction = (req, res) => {
         }).catch((err) => {
             res.send(err)
         })
-}
+}//end getAllCompleteTodoListsFunction
 
 
 
@@ -93,7 +93,7 @@ let getFriendRequestsFunction = (req, res) => {
         }
     })
 
-}
+} //end getFriendRequestsFunction
 
 module.exports = {
     getAllTodoListsFunction : getAllTodoListsFunction,

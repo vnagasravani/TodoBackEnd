@@ -5,7 +5,7 @@ let Email = (email) => {
     } else {
       return false
     }
-  }
+  }//end email
   
     /* Minimum 8 characters which contain only characters,numeric digits, underscore and first character must be a letter */
   let Password = (password) => {
@@ -15,7 +15,7 @@ let Email = (email) => {
     } else {
       return false
     }
-  }
+  }//end password
   
   module.exports = {
     Email: Email,
