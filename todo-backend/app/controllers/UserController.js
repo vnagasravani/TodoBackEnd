@@ -187,7 +187,7 @@ let signUp = (req, res) => {
                                 userName:`${req.body.firstName} ${req.body.lastName}`,
                                 email: req.body.email,
                                 mobileNumber: req.body.mobileNumber,
-                                password: password.hashpassword(req.body.password),
+                                password: req.body.password,
                                 createdOn: Date.now()
 
                             });
@@ -284,14 +284,7 @@ let login = (req, res) => {
                 let apiresponse = response.generate(true, 'password parameter is missing', 500, null);
                 reject(apiresponse);
             }
-            else {
-                password.comparePassword(req.body.password, userDetails.password, (err, isMatch) => {
-                    if (err) {
-                        console.log(err)
-                        logger.error('userController: validatePassword()');
-                        let apiResponse = response.generate(true, 'Login Failed', 500, null)
-                        reject(apiResponse)
-                    } else if (isMatch) {
+             else if (req.body.password == userDetails.password ) {
                         delete userDetails.password;
                         delete userDetails.createdOn;
                         delete userDetails._id;
@@ -303,12 +296,7 @@ let login = (req, res) => {
                         let apiResponse = response.generate(true, 'Wrong Password.Login Failed', 400, null)
                         reject(apiResponse)
                     }
-                })
-            }
-        })
-
-
-      
+        })   
         
     } // end validate password
 
